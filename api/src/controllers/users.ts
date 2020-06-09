@@ -20,8 +20,8 @@ export const registerUser = catchErrors(async (req, res) => {
     );
   }
   const hash = await bcrypt.hash(req.body.password, 12);
-  const user = await createEntity(User, { ...req.body, password: hash });
-  res.respond({ user });
+  await createEntity(User, { ...req.body, password: hash });
+  res.respond(true);
 });
 
 export const login = catchErrors(async (req, res) => {
@@ -33,7 +33,6 @@ export const login = catchErrors(async (req, res) => {
     throw new BadUserInputError('Wrong password');
   } else {
     const { name, type, id } = user;
-    // TODO DO NOT RETURN PASSWORD IN BODY
     const userInfo = { id, email, name, type };
 
     res.respond({
