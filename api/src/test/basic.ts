@@ -180,7 +180,7 @@ describe('permissioning', function() {
       .get('/users')
       .set('Authorization', `Bearer ${admin_token}`);
     res.should.have.status(200);
-    const users = res.body;
+    const users = res.body.users;
     users.length.should.be.at.least(6);
   });
 

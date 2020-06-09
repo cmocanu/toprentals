@@ -116,7 +116,7 @@ export const getUsers = catchErrors(async (req, res, next) => {
     if (userType === 'CLIENT') {
       throw new PermissionDeniedError();
     }
-    getRealtors(req, res, next);
+    return getRealtors(req, res, next);
   }
 
   if (userType !== 'ADMIN') {
