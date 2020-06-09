@@ -51,16 +51,16 @@ export const getAvailableApartments = catchErrors(async (req, res) => {
 });
 
 export const create = catchErrors(async (req, res) => {
-  const apartment = await createEntity(Apartment, req.body);
-  res.respond({ apartment });
+  await createEntity(Apartment, req.body);
+  res.respond(true);
 });
 
 export const remove = catchErrors(async (req, res) => {
-  const apartment = await deleteEntity(Apartment, req.params.id);
-  res.respond({ apartment });
+  await deleteEntity(Apartment, req.params.id);
+  res.respond(true);
 });
 
 export const update = catchErrors(async (req, res) => {
-  const apartment = await updateEntity(Apartment, req.params.id, req.body);
-  res.respond({ apartment });
+  await updateEntity(Apartment, req.params.id, req.body);
+  res.respond(true);
 });
