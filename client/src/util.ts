@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+// This is hardcoded because the key will go into the bundle anyway.
+// To restrict usage, http referrers need to be whitelisted in the GCP Console.
 export const GOOGLE_KEY = "AIzaSyDRvv4KrexparkBe668VRjlV3pQ7JOwQMA";
 
 // Hook from https://usehooks.com/useDebounce/
