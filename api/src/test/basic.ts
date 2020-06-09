@@ -48,9 +48,6 @@ describe('users', function() {
       .post('/register')
       .send(user);
     res.should.have.status(200);
-
-    const client = res.body;
-    client.user.email.should.equal(user.email);
   });
 
   it('client user cannot login with wrong password', async function() {
@@ -133,9 +130,9 @@ describe('filters', function() {
 });
 
 describe('CRUD', function() {
-  // TODO make sure that ADMIN cannot change owner_id to non_existant user ??
+  // TODO test that ADMIN cannot change owner_id to non_existant user ??
 
-  // TODO make sure that admin cannot update user to new id?
+  // TODO test that admin cannot update user to new id?
 
   it('removing owner changes ownership to admin who removed him', async function() {
     const res = await chai
