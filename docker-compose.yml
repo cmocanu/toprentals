@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  nginx:
+    build: ./compose/nginx
+    restart: always
+    volumes:
+      - ./devguild/build:/build
+    ports:
+      - 80:80
+    depends_on:
+      - "api"
+
+  api:
+    build:
+      context: .
+      dockerfile: ./compose/api/Dockerfile
+    working_dir: /api
+    command: npm start
+    volumes:
+      - ./api:/api
+    ports:
+      - "8000:8000"
