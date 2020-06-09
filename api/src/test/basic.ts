@@ -3,7 +3,6 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import { establishTestDatabaseConnection, initializeExpress } from '../index';
 import { cleanTestDb, populateTestDb, dropTables } from './mock_data';
-import { Apartment } from 'entities';
 
 chai.use(chaiHttp);
 chai.should();
