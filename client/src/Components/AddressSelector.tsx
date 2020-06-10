@@ -10,7 +10,7 @@ Geocode.setApiKey(GOOGLE_KEY);
 Geocode.setRegion("ro");
 Geocode.enableDebug();
 
-export const AddressSelector = (props: {
+export const LocalAddressSelector = (props: {
   onChange: (lat: number, lng: number) => void;
   initialLatitude?: number;
   initialLongitude?: number;
@@ -110,3 +110,4 @@ export const AddressSelector = (props: {
     </div>
   );
 };
+export const AddressSelector = React.memo(LocalAddressSelector);
