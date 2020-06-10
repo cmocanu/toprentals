@@ -15,7 +15,6 @@ import {
   IconButton,
   FormControlLabel,
   Switch,
-  TextField,
 } from "@material-ui/core";
 import { Apartment, User } from "../Backend/Types";
 import { createApartment, editApartment } from "../Backend/ApartmentApi";
@@ -161,11 +160,7 @@ function ApartmentDialog(props: {
   );
 }
 
-export function CreateApartmentDialog(props: {
-  initialData: Partial<Apartment>;
-  refresh: () => void;
-  realtors: User[];
-}) {
+export function CreateApartmentDialog(props: { refresh: () => void; realtors: User[] }) {
   const renderButton = (onClick: () => void) => {
     return (
       <Button variant="contained" color="secondary" onClick={onClick}>
@@ -174,7 +169,10 @@ export function CreateApartmentDialog(props: {
     );
   };
 
-  const { initialData, refresh, realtors } = props;
+  const { refresh, realtors } = props;
+  const initialData: Partial<Apartment> = {
+    rental_status: "AVAILABLE",
+  };
 
   return (
     <ApartmentDialog

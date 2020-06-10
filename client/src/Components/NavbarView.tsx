@@ -29,10 +29,9 @@ export function NavbarView(props: { user: User | undefined; setUser: (user: User
   const name = user ? user.name : "Not logged in";
 
   const handleLogout = async () => {
-    const res = await logout();
-    if (!(res instanceof Error)) {
-      setUser(undefined);
-    }
+    await logout();
+    setUser(undefined);
+    window.location.href = "/";
   };
 
   const loggedIn = (

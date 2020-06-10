@@ -10,12 +10,6 @@ const containerStyle = {
   height: 500,
 };
 
-const infoWindowStyle = {
-  background: `white`,
-  border: `1px solid #ccc`,
-  padding: 15,
-};
-
 const PIATA_UNIVERSITATII = {
   lat: 44.4349137,
   lng: 26.1011553,

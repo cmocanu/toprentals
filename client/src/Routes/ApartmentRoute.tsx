@@ -68,8 +68,6 @@ export function ApartmentRoute() {
       if (res instanceof Error) {
         console.error(res.message);
       } else {
-        console.log("Setting apartments");
-        console.log(res);
         setApartments(res.apartments);
         setPageCount(res.pageCount);
       }
@@ -85,9 +83,7 @@ export function ApartmentRoute() {
     </Grid>
   );
 
-  const createApartmentButton = realtors && (
-    <CreateApartmentDialog initialData={{}} refresh={refresh} realtors={realtors} />
-  );
+  const createApartmentButton = realtors && <CreateApartmentDialog refresh={refresh} realtors={realtors} />;
 
   const handlePageChange = (_event: any, value: number) => setPage(value);
 

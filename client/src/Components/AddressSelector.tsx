@@ -15,9 +15,6 @@ export const AddressSelector = (props: {
   initialLatitude?: number;
   initialLongitude?: number;
 }) => {
-  console.log("Rendering address selector");
-  console.log("Initial latitude " + props.initialLatitude);
-  console.log("Initial longitude " + props.initialLongitude);
   const [address, setAddress] = useState("");
   const debouncedAddress: string = useDebounce(address, 500);
   const [latText, setLatText] = useState(props.initialLatitude?.toString() || "0");
@@ -79,9 +76,10 @@ export const AddressSelector = (props: {
         changeCoords({ lat, lng });
       },
       (error: any) => {
-        // console.error(error);
+        console.error(error);
       }
     );
+    // eslint-disable-next-line
   }, [debouncedAddress]);
 
   useEffect(() => {
@@ -90,14 +88,14 @@ export const AddressSelector = (props: {
     }
     Geocode.fromLatLng(debouncedCoords.lat, debouncedCoords.lng).then(
       (response: any) => {
-        // console.log(response);
         const address = response.results[0].formatted_address;
         setAddress(address);
       },
       (error: any) => {
-        // console.error(error);
+        console.error(error);
       }
     );
+    // eslint-disable-next-line
   }, [debouncedCoords]);
 
   return (
