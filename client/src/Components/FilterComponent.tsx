@@ -19,9 +19,10 @@ export function LocalFilterComponent(props: {
   maxVal: number;
   unit: string;
   name: string;
+  step: number;
 }) {
   const classes = useStyles();
-  const { filter, setFilter, maxVal, unit, name } = props;
+  const { filter, setFilter, maxVal, unit, name, step } = props;
   const value = [filter.min, filter.max];
 
   const valuetext = (value: number) => {
@@ -58,6 +59,7 @@ export function LocalFilterComponent(props: {
         aria-labelledby="range-slider"
         getAriaValueText={valuetext}
         marks={marks}
+        step={step}
       />
     </div>
   );

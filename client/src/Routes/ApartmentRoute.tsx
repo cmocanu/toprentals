@@ -77,9 +77,30 @@ export function ApartmentRoute() {
 
   const filters = (
     <Grid container={true} direction="row" justify="center" className={classes.filters}>
-      <FilterComponent filter={priceFilter} setFilter={setPriceFilter} unit="€" name="Price filter" maxVal={3000} />
-      <FilterComponent filter={roomNrFilter} setFilter={setRoomNrFilter} unit="rooms" name="Room filter" maxVal={10} />
-      <FilterComponent filter={sizeFilter} setFilter={setsizeFilter} unit="sqm" name="Size filter" maxVal={500} />
+      <FilterComponent
+        filter={priceFilter}
+        setFilter={setPriceFilter}
+        unit="€"
+        name="Price filter"
+        maxVal={3000}
+        step={100}
+      />
+      <FilterComponent
+        filter={roomNrFilter}
+        setFilter={setRoomNrFilter}
+        unit="rooms"
+        name="Room filter"
+        maxVal={10}
+        step={1}
+      />
+      <FilterComponent
+        filter={sizeFilter}
+        setFilter={setsizeFilter}
+        unit="sqm"
+        name="Size filter"
+        maxVal={500}
+        step={10}
+      />
     </Grid>
   );
 
