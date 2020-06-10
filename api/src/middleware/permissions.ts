@@ -30,10 +30,7 @@ const ability = (userType: string) => {
 };
 
 export const checkPermissions = catchErrors(async (req, _res, next) => {
-  console.log(req.currentUser.type);
-  console.log(req.path.split('/')[1]);
   if (ability(req.currentUser.type).cannot(req.method, req.path.split('/')[1])) {
-    console.log('Permission denied in permissions');
     throw new PermissionDeniedError();
   }
 

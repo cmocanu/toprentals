@@ -53,7 +53,6 @@ function ApartmentDialog(props: {
   const handleAdd = async () => {
     const res = await endpoint(apt);
     if (res instanceof Error) {
-      console.log("Setting request failed");
       setErrorMessage(res.message);
     } else {
       setErrorMessage(undefined);

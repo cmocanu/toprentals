@@ -168,8 +168,6 @@ export function CreateUserDialog(props: { onSuccess?: () => void }) {
 
 export function EditUserDialog(props: { user: Partial<User>; onSuccess?: () => void }) {
   const { user, onSuccess } = props;
-  console.log("editing");
-  console.log(user);
 
   const renderButton = (onClick: () => void) => {
     return (
