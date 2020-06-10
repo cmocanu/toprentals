@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -61,11 +61,15 @@ function ApartmentDialog(props: {
     }
   };
 
-  const onChange = (prop: keyof Apartment) => (val: string) => {
-    setApt((oldApt: Partial<Apartment>) => {
-      return { ...oldApt, [prop]: val };
-    });
-  };
+  const handlers: any = {};
+  for (const key of ["name", "description", "size", "room_nr", "rental_status"]) {
+    // eslint-disable-next-line
+    handlers[key] = useCallback((val: string) => {
+      setApt((oldApt: Partial<Apartment>) => {
+        return { ...oldApt, [key]: val };
+      });
+    }, []);
+  }
 
   // TODO make it look ok in case of huge number of realtors
   const RealtorSelect = () => {
@@ -99,14 +103,14 @@ function ApartmentDialog(props: {
     );
   };
 
-  const onAddressChange = (lat: number, lng: number) => {
+  const onAddressChange = useCallback((lat: number, lng: number) => {
     setApt((oldApt: Partial<Apartment>) => {
       return { ...oldApt, latitude: lat, longitude: lng };
     });
-  };
+  }, []);
 
   const onChangeSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const changeRentalStatus = onChange("rental_status");
+    const changeRentalStatus = handlers["rental_status"];
     if (event.target.checked) {
       changeRentalStatus("AVAILABLE");
     } else {
@@ -122,11 +126,11 @@ function ApartmentDialog(props: {
         <DialogContent>
           <DialogContentText>Create or edit apartments</DialogContentText>
           <ValidatorForm id="apartmentform" onSubmit={handleAdd}>
-            <Text label="Name" value={apt.name} handleChange={onChange("name")} />
-            <Text label="Description" value={apt.description} handleChange={onChange("description")} />
-            <Number label="Size" value={apt.size?.toString()} handleChange={onChange("size")} />
-            <Number label="Number of rooms" value={apt.room_nr?.toString()} handleChange={onChange("room_nr")} />
-            <Number label="Price" value={apt.price?.toString()} handleChange={onChange("price")} />
+            <Text label="Name" value={apt.name} handleChange={handlers["name"]} />
+            <Text label="Description" value={apt.description} handleChange={handlers["description"]} />
+            <Number label="Size" value={apt.size?.toString()} handleChange={handlers["size"]} />
+            <Number label="Number of rooms" value={apt.room_nr?.toString()} handleChange={handlers["room_nr"]} />
+            <Number label="Price" value={apt.price?.toString()} handleChange={handlers["price"]} />
             <br />
             <br />
             <AddressSelector

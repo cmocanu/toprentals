@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { TextValidator } from "react-material-ui-form-validator";
 
 const generateInput = (validators: string[], errorMessages: string[], isPassword?: boolean) => {
-  const myComponent = (props: {
+  const InputComponent = (props: {
     label: string;
     value: string | undefined;
     handleChange: (e: string) => void;
     disabled?: boolean;
   }) => {
     const { label, value, disabled, handleChange } = props;
-    const onChange = (event: any) => {
+    const onChange = useCallback((event: any) => {
       handleChange(event.target.value);
-    };
+    }, []);
     return (
       <TextValidator
         label={label}
@@ -23,11 +23,10 @@ const generateInput = (validators: string[], errorMessages: string[], isPassword
         errorMessages={errorMessages}
         fullWidth={true}
         disabled={disabled}
-        // autoFocus={true}
       />
     );
   };
-  return React.memo(myComponent);
+  return React.memo(InputComponent);
 };
 
 export const Text = generateInput(["required"], ["this field is required"]);
