@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { getApartments } from "../Backend/ApartmentApi";
 import { Apartment, Filter, User } from "../Backend/Types";
 import { Grid, makeStyles, Container } from "@material-ui/core";
@@ -58,9 +58,9 @@ export function ApartmentRoute() {
   const debouncedRoomNrFilter = useDebounce(roomNrFilter, 500);
   const debouncedSizeFilter = useDebounce(sizeFilter, 500);
 
-  const refresh = () => {
-    setRefreshCounter(refreshCounter + 1);
-  };
+  const refresh = useCallback(() => {
+    setRefreshCounter((refreshCounter) => refreshCounter + 1);
+  }, []);
 
   useEffect(() => {
     async function updateApartments() {

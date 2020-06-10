@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ApartmentCard = (props: {
+export const LocalApartmentCard = (props: {
   apartment: Apartment;
   refresh: () => void;
   realtors: User[] | undefined;
@@ -130,3 +130,5 @@ export const ApartmentCard = (props: {
     </Card>
   );
 };
+
+export const ApartmentCard = React.memo(LocalApartmentCard);

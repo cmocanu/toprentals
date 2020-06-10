@@ -1,4 +1,4 @@
-import React, { useEffect, useState, CSSProperties } from "react";
+import React, { useEffect, useState, CSSProperties, useCallback } from "react";
 import { User } from "../Backend/Types";
 import { Grid, CardContent, Card, makeStyles, Container } from "@material-ui/core";
 import { getUsers } from "../Backend/UserApi";
@@ -40,9 +40,9 @@ export function UserRoute() {
     findUsers();
   }, [page, refreshCounter]);
 
-  const refresh = () => {
-    setRefreshCounter(refreshCounter + 1);
-  };
+  const refresh = useCallback(() => {
+    setRefreshCounter((refreshCounter) => refreshCounter + 1);
+  }, []);
 
   const renderUserType = (user: User) => {
     const color = user.type === "CLIENT" ? "green" : user.type === "REALTOR" ? "blue" : "red";

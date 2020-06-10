@@ -13,7 +13,13 @@ const useStyles = makeStyles({
   },
 });
 
-export function FilterComponent(props: { filter: Filter; setFilter: any; maxVal: number; unit: string; name: string }) {
+export function LocalFilterComponent(props: {
+  filter: Filter;
+  setFilter: any;
+  maxVal: number;
+  unit: string;
+  name: string;
+}) {
   const classes = useStyles();
   const { filter, setFilter, maxVal, unit, name } = props;
   const value = [filter.min, filter.max];
@@ -56,3 +62,4 @@ export function FilterComponent(props: { filter: Filter; setFilter: any; maxVal:
     </div>
   );
 }
+export const FilterComponent = React.memo(LocalFilterComponent);

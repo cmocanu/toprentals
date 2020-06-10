@@ -2,7 +2,7 @@ import React from "react";
 import { TextValidator } from "react-material-ui-form-validator";
 
 const generateInput = (validators: string[], errorMessages: string[], isPassword?: boolean) => {
-  return (props: {
+  const myComponent = (props: {
     label: string;
     value: string | undefined;
     handleChange: (e: string) => void;
@@ -27,6 +27,7 @@ const generateInput = (validators: string[], errorMessages: string[], isPassword
       />
     );
   };
+  return React.memo(myComponent);
 };
 
 export const Text = generateInput(["required"], ["this field is required"]);
