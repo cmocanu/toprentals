@@ -62,7 +62,7 @@ function ApartmentDialog(props: {
   };
 
   const handlers: any = {};
-  for (const key of ["name", "description", "size", "room_nr", "rental_status"]) {
+  for (const key of ["name", "description", "size", "price", "room_nr", "rental_status"]) {
     // eslint-disable-next-line
     handlers[key] = useCallback((val: string) => {
       setApt((oldApt: Partial<Apartment>) => {
